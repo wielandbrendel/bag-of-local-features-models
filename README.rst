@@ -23,16 +23,32 @@ code snippets to load the models:
 
 .. code-block:: python
 
-   import bagnets
+   import bagnets.pytorch
    pytorch_model = bagnets.pytorch.bagnet16(pretrained=True)
 
 .. code-block:: python
 
-   import bagnets
+   import bagnets.keras
    keras_model = bagnets.keras.bagnet16(pretrained=True)
 
 and replace bagnet16 with whatever size you want (available are bagnet8, bagnet16 and bagnet32). The last number refers to the
 maximum local patch size that the network can integrate over.
+
+
+Image Preprocessing
+-------------------
+
+The models expect inputs with the standard torchvision preprocessing, i.e.
+
+* with RGB channels
+* in the format [channel, x, y]
+* loaded with pixel values between 0 and 1 which are then...
+* ...normalized by mean and standard deviation, i.e. for given mean: (M1,...,Mn) and std: (S1,..,Sn) for n channels, the normalization should transform each channel of the input as input[channel] = (input[channel] - mean[channel]) / std[channel]
+
+The mean and standard deviation are:
+
+* mean = [0.485, 0.456, 0.406]
+* std = [0.229, 0.224, 0.225]
 
 Citation
 --------
