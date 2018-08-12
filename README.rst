@@ -4,8 +4,8 @@ BagNets
 
 In this repository you find the model specification and pretrained weights for the bag-of-local-feature models published in
 
-`Approximating CNNs with Bag-of-local-Features models8works surprisingly well on ImageNet <http://arxiv.org/abs/XXXX.XXXX>`__.
-Wieland Brendel and Matthias Bethge, arXiv:XXXX.XXXX
+| `Approximating CNNs with Bag-of-local-Features models8works surprisingly well on ImageNet <http://arxiv.org/abs/XXXX.XXXX>`__.
+| Wieland Brendel and Matthias Bethge, arXiv:XXXX.XXXX
 
 Installation
 ------------
@@ -29,7 +29,7 @@ code snippets to load the models:
 .. code-block:: python
 
    import bagnets.keras
-   keras_model = bagnets.keras.bagnet16(pretrained=True)
+   keras_model = bagnets.keras.bagnet16()
 
 and replace bagnet16 with whatever size you want (available are bagnet8, bagnet16 and bagnet32). The last number refers to the
 maximum local patch size that the network can integrate over.
