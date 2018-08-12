@@ -6,12 +6,12 @@ from collections import OrderedDict
 import os 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-__all__ = ['resnet50_r8', 'resnet50_r16', 'resnet50_r32']
+__all__ = ['bagnet8', 'bagnet16', 'bagnet32']
 
 model_locations = {
-            'resnet50_r8': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/1c2e1d5ea7e98912ec64326b3d0eef63e4221e2f/bagnet8.pth.tar',
-            'resnet50_r16': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/91482c040160300671f20b2dedbae56b7d122ac9/bagnet16.pth.tar',
-            'resnet50_r32': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/91482c040160300671f20b2dedbae56b7d122ac9/bagnet32.pth.tar',
+            'bagnet8': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/1c2e1d5ea7e98912ec64326b3d0eef63e4221e2f/bagnet8.pth.tar',
+            'bagnet16': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/91482c040160300671f20b2dedbae56b7d122ac9/bagnet16.pth.tar',
+            'bagnet32': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/91482c040160300671f20b2dedbae56b7d122ac9/bagnet32.pth.tar',
                             }
 
 class Bottleneck(nn.Module):
@@ -58,11 +58,11 @@ class Bottleneck(nn.Module):
         return out
 
 
-class ResNet(nn.Module):
+class BagNet(nn.Module):
 
     def __init__(self, block, layers, strides=[1, 2, 2, 2], kernel3=[0, 0, 0, 0], num_classes=1000, avg_pool=True):
         self.inplanes = 64
-        super(ResNet, self).__init__()
+        super(BagNet, self).__init__()
         self.conv1 = nn.Conv2d(3, 64, kernel_size=1, stride=1, padding=0,
                                bias=False)
         self.conv2 = nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=0,
@@ -141,35 +141,35 @@ def load_checkpoint(model, filename):
     
     model.load_state_dict(new_state_dict)
 
-def resnet50_r32(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
-    """Constructs a ResNet-50 model.
+def bagnet32(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
+    """Constructs a Bagnet-32 model.
 
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
-    model = ResNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,1,1], **kwargs)
+    model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,1,1], **kwargs)
     if pretrained:
-        load_checkpoint(model, model_locations['resnet50_r32'])
+        load_checkpoint(model, model_locations['bagnet32'])
     return model
 
-def resnet50_r16(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
-    """Constructs a ResNet-50 model.
+def bagnet16(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
+    """Constructs a Bagnet-16 model.
 
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
-    model = ResNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,1,0], **kwargs)
+    model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,1,0], **kwargs)
     if pretrained:
-        load_checkpoint(model, model_locations['resnet50_r16'])
+        load_checkpoint(model, model_locations['bagnet16'])
     return model
 
-def resnet50_r8(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
-    """Constructs a ResNet-50 model.
+def bagnet8(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
+    """Constructs a Bagnet-8 model.
 
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
-    model = ResNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,0,0], **kwargs)
+    model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,0,0], **kwargs)
     if pretrained:
-        load_checkpoint(model, model_locations['resnet50_r8'])
+        load_checkpoint(model, model_locations['bagnet8'])
     return model
