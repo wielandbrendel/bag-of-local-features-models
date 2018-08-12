@@ -2,17 +2,19 @@ import torch.nn as nn
 import math
 import torch
 from collections import OrderedDict
+from torch.utils import model_zoo
 
 import os 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 __all__ = ['bagnet8', 'bagnet16', 'bagnet32']
 
-model_locations = {
-            'bagnet8': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/1c2e1d5ea7e98912ec64326b3d0eef63e4221e2f/bagnet8.pth.tar',
-            'bagnet16': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/91482c040160300671f20b2dedbae56b7d122ac9/bagnet16.pth.tar',
-            'bagnet32': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/91482c040160300671f20b2dedbae56b7d122ac9/bagnet32.pth.tar',
+model_urls = {
+            'bagnet8': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet8-34f4ccd2.pth.tar',
+            'bagnet16': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet16-105524de.pth.tar',
+            'bagnet32': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet32-2ddd53ed.pth.tar',
                             }
+
 
 class Bottleneck(nn.Module):
     expansion = 4
@@ -126,21 +128,6 @@ class BagNet(nn.Module):
 
         return x
 
-def load_checkpoint(model, filename):
-    checkpoint = torch.load('{}/{}'.format(dir_path, filename))
-    state_dict = checkpoint['state_dict']
-    
-    # convert state_dict (which was saved using DataParallel)
-    # according to https://discuss.pytorch.org/t/solved-keyerror-unexpected
-    # -key-module-encoder-embedding-weight-in-state-dict/1686/4
-    from collections import OrderedDict
-    new_state_dict = OrderedDict()
-    for k, v in state_dict.items():
-        name = k[7:] # remove `module.`
-        new_state_dict[name] = v
-    
-    model.load_state_dict(new_state_dict)
-
 def bagnet32(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
     """Constructs a Bagnet-32 model.
 
@@ -149,7 +136,7 @@ def bagnet32(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
     """
     model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,1,1], **kwargs)
     if pretrained:
-        load_checkpoint(model, model_locations['bagnet32'])
+        model.load_state_dict(model_zoo.load_url(model_urls['bagnet32']))
     return model
 
 def bagnet16(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
@@ -160,7 +147,7 @@ def bagnet16(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
     """
     model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,1,0], **kwargs)
     if pretrained:
-        load_checkpoint(model, model_locations['bagnet16'])
+        model.load_state_dict(model_zoo.load_url(model_urls['bagnet16']))
     return model
 
 def bagnet8(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
@@ -171,5 +158,5 @@ def bagnet8(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
     """
     model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,0,0], **kwargs)
     if pretrained:
-        load_checkpoint(model, model_locations['bagnet8'])
+        model.load_state_dict(model_zoo.load_url(model_urls['bagnet8']))
     return model
