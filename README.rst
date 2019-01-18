@@ -4,7 +4,7 @@ BagNets
 
 In this repository you find the model specification and pretrained weights for the bag-of-local-feature models published in
 
-| `Approximating CNNs with Bag-of-local-Features models8works surprisingly well on ImageNet <https://openreview.net/pdf?id=SkfMWhAqYQ>`__.
+| `Approximating CNNs with Bag-of-local-Features models works surprisingly well on ImageNet <https://openreview.net/pdf?id=SkfMWhAqYQ>`__.
 | Wieland Brendel and Matthias Bethge, ICLR 2019
 
 Installation
