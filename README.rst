@@ -4,8 +4,8 @@ BagNets
 
 In this repository you find the model specification and pretrained weights for the bag-of-local-feature models published in
 
-| `Approximating CNNs with Bag-of-local-Features models8works surprisingly well on ImageNet <http://arxiv.org/abs/XXXX.XXXX>`__.
-| Wieland Brendel and Matthias Bethge, arXiv:XXXX.XXXX
+| `Approximating CNNs with Bag-of-local-Features models works surprisingly well on ImageNet <https://openreview.net/pdf?id=SkfMWhAqYQ>`__.
+| Wieland Brendel and Matthias Bethge, ICLR 2019
 
 Installation
 ------------
@@ -24,14 +24,14 @@ code snippets to load the models:
 .. code-block:: python
 
    import bagnets.pytorch
-   pytorch_model = bagnets.pytorch.bagnet16(pretrained=True)
+   pytorch_model = bagnets.pytorch.bagnet17(pretrained=True)
 
 .. code-block:: python
 
    import bagnets.keras
-   keras_model = bagnets.keras.bagnet16()
+   keras_model = bagnets.keras.bagnet17()
 
-and replace bagnet16 with whatever size you want (available are bagnet8, bagnet16 and bagnet32). The last number refers to the
+and replace bagnet16 with whatever size you want (available are bagnet9, bagnet17 and bagnet33). The last number refers to the
 maximum local patch size that the network can integrate over.
 
 
@@ -61,14 +61,12 @@ in resulting publications:
   @article{brendel2018bagnets,
     title={Approximating CNNs with Bag-of-local-Features models8works surprisingly well on ImageNet},
     author={Brendel, Wieland and Bethge, Matthias},
-    journal={arXiv preprint arXiv:XXXX.XXXX},
-    year={2018},
-    url={http://arxiv.org/abs/XXXX.XXXX},
-    archivePrefix={arXiv},
-    eprint={XXXX.XXXX},
+    journal={International Conference on Learning Representations},
+    year={2019},
+    url={https://openreview.net/pdf?id=SkfMWhAqYQ},
   }
 
-You can find the paper on arXiv: https://arxiv.org/abs/XXXX.XXXX
+You can find the paper on OpenReview: https://openreview.net/pdf?id=SkfMWhAqYQ
 
 Authors
 -------

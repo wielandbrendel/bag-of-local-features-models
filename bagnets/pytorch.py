@@ -7,12 +7,12 @@ from torch.utils import model_zoo
 import os 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-__all__ = ['bagnet8', 'bagnet16', 'bagnet32']
+__all__ = ['bagnet9', 'bagnet17', 'bagnet33']
 
 model_urls = {
-            'bagnet8': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet8-34f4ccd2.pth.tar',
-            'bagnet16': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet16-105524de.pth.tar',
-            'bagnet32': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet32-2ddd53ed.pth.tar',
+            'bagnet9': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet8-34f4ccd2.pth.tar',
+            'bagnet17': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet16-105524de.pth.tar',
+            'bagnet33': 'https://bitbucket.org/wielandbrendel/bag-of-feature-pretrained-models/raw/249e8fa82c0913623a807d9d35eeab9da7dcc2a8/bagnet32-2ddd53ed.pth.tar',
                             }
 
 
@@ -128,35 +128,35 @@ class BagNet(nn.Module):
 
         return x
 
-def bagnet32(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
-    """Constructs a Bagnet-32 model.
+def bagnet33(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
+    """Constructs a Bagnet-33 model.
 
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,1,1], **kwargs)
     if pretrained:
-        model.load_state_dict(model_zoo.load_url(model_urls['bagnet32']))
+        model.load_state_dict(model_zoo.load_url(model_urls['bagnet33']))
     return model
 
 def bagnet16(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
-    """Constructs a Bagnet-16 model.
+    """Constructs a Bagnet-17 model.
 
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,1,0], **kwargs)
     if pretrained:
-        model.load_state_dict(model_zoo.load_url(model_urls['bagnet16']))
+        model.load_state_dict(model_zoo.load_url(model_urls['bagnet17']))
     return model
 
 def bagnet8(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
-    """Constructs a Bagnet-8 model.
+    """Constructs a Bagnet-9 model.
 
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = BagNet(Bottleneck, [3, 4, 6, 3], strides=strides, kernel3=[1,1,0,0], **kwargs)
     if pretrained:
-        model.load_state_dict(model_zoo.load_url(model_urls['bagnet8']))
+        model.load_state_dict(model_zoo.load_url(model_urls['bagnet9']))
     return model
