@@ -24,14 +24,14 @@ code snippets to load the models:
 .. code-block:: python
 
    import bagnets.pytorch
-   pytorch_model = bagnets.pytorch.bagnet16(pretrained=True)
+   pytorch_model = bagnets.pytorch.bagnet17(pretrained=True)
 
 .. code-block:: python
 
    import bagnets.keras
-   keras_model = bagnets.keras.bagnet16()
+   keras_model = bagnets.keras.bagnet17()
 
-and replace bagnet16 with whatever size you want (available are bagnet8, bagnet16 and bagnet32). The last number refers to the
+and replace bagnet16 with whatever size you want (available are bagnet9, bagnet17 and bagnet33). The last number refers to the
 maximum local patch size that the network can integrate over.
 
 
