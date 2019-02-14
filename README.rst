@@ -31,7 +31,7 @@ code snippets to load the models:
    import bagnets.keras
    keras_model = bagnets.keras.bagnet17()
 
-and replace bagnet16 with whatever size you want (available are bagnet9, bagnet17 and bagnet33). The last number refers to the
+and replace bagnet17 with whatever size you want (available are bagnet9, bagnet17 and bagnet33). The last number refers to the
 maximum local patch size that the network can integrate over.
 
 
