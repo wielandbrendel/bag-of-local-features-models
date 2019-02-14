@@ -139,7 +139,7 @@ def bagnet33(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
         model.load_state_dict(model_zoo.load_url(model_urls['bagnet33']))
     return model
 
-def bagnet16(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
+def bagnet17(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
     """Constructs a Bagnet-17 model.
 
     Args:
@@ -150,7 +150,7 @@ def bagnet16(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
         model.load_state_dict(model_zoo.load_url(model_urls['bagnet17']))
     return model
 
-def bagnet8(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
+def bagnet9(pretrained=False, strides=[2, 2, 2, 1], **kwargs):
     """Constructs a Bagnet-9 model.
 
     Args:
