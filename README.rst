@@ -65,7 +65,7 @@ in resulting publications:
 .. code-block::
 
   @article{brendel2018bagnets,
-    title={Approximating CNNs with Bag-of-local-Features models8works surprisingly well on ImageNet},
+    title={Approximating CNNs with Bag-of-local-Features models works surprisingly well on ImageNet},
     author={Brendel, Wieland and Bethge, Matthias},
     journal={International Conference on Learning Representations},
     year={2019},
