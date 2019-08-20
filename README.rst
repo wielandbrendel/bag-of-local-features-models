@@ -34,6 +34,12 @@ code snippets to load the models:
 and replace bagnet17 with whatever size you want (available are bagnet9, bagnet17 and bagnet33). The last number refers to the
 maximum local patch size that the network can integrate over.
 
+FAQ
+----
+
+*   **Do I need to manually split the image into patches?**
+
+    No. You use BagNets just like any other DNN and apply it to the whole image. The BagNets are really similar to ResNets. In a nutshell we simply replaced most 3x3 convolutions by 1x1 convolutions. This effectively means that the largest receptive fields in the BagNets are of size qxq (where q is smaller than the image size), which is equivalent to splitting the image into individual patches.
 
 Image Preprocessing
 -------------------
